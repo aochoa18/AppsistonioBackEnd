@@ -1,0 +1,13 @@
+[
+  {
+    "name": "default",
+    "type": "mssql",
+    "host": "rationalsoftware.ddns.net",
+    "port": 1433,
+    "username": "sa",
+    "password": "$lcs1648_*",
+    "database": "",
+    "synchronize": false,
+    "entities": ["entities/*.js"]
+  }
+]

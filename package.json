@@ -1,0 +1,30 @@
+{
+  "name": "appsistoniobackend",
+  "version": "1.0.0",
+  "description": "App backend para las aplicaciones tanto web como movil de APPSISTONIO",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/ws": "^7.4.0",
+    "axios": "^0.21.1",
+    "cors": "^2.8.5",
+    "dateformat": "^4.5.1",
+    "express": "^4.17.1",
+    "mssql": "^4.0.4",
+    "nodemailer": "^6.5.0",
+    "onesignal-node": "^3.2.1",
+    "reflect-metadata": "^0.1.10",
+    "typedjson": "1.6.0-rc4",
+    "typeorm": "^0.2.29",
+    "ws": "^7.4.4"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.11",
+    "ts-node": "^9.1.1",
+    "typescript": "^3.3.33333"
+  }
+}
