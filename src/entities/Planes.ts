@@ -26,6 +26,9 @@ export class Planes {
   @Column("float", { name: "Precio", nullable: true, precision: 53 })
   precio: number | null;
 
+  @Column("int", { name: "Dias", nullable: true })
+  dias: number | null;
+
   @OneToMany(
     () => ConfiguracionPlanes,
     (configuracionPlanes) => configuracionPlanes.idPlan

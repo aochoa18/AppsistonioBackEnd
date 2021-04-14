@@ -25,6 +25,8 @@ export class PlanRequest {
     Estado: boolean;
     @jsonMember
     Precio: number;
+    @jsonMember
+    Dias: number;
     @jsonArrayMember(configuracionPlan)
     configPlan: configuracionPlan[]
 }

@@ -43,6 +43,12 @@ export class Servicio {
   @Column("bit", { name: "Estado", nullable: true })
   estado: boolean | null;
 
+  @Column("datetime", { name: "FechaEjecucion", nullable: true })
+  fechaEjecucion: Date | null;
+
+  @Column("datetime", { name: "FechaFinalizacion", nullable: true })
+  fechaFinalizacion: Date | null;
+
   @OneToMany(
     () => DomiciliarioRequest,
     (domiciliarioRequest) => domiciliarioRequest.idPedido2

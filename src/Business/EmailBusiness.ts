@@ -26,7 +26,7 @@ export class EmailBusiness {
 		});
 	}
 
-	SendMailNewServicio(nombre: string, to: string) {
+	SendMailNewServicio(nombre: string, to: string, servicio: string) {
 		var mailer = createTransport({
 			service: "gmail",
 			auth: {
@@ -35,8 +35,9 @@ export class EmailBusiness {
 			}
 		});
 		var messageHtml = "Estimado usuario " + nombre;
-		messageHtml += "<br><br>Recibimos su solicitud de lo que sea.";
-		messageHtml += "<br><br>En momentos recibira la informacion del colaborador que lo atendera";
+		messageHtml += "<br><br>Recibimos su solicitud de <b>" + servicio + "</b> para ser asignado a un proveedor de nuestro equipo.";
+		messageHtml += "<br><br>En momentos recibirá información detallada del colaborador que atenderá su servicio";
+		messageHtml += "<br><br>Recuerda que puedes consultar el estado de tus servicios en la sección \"Servicios\"";
 		messageHtml += "</b><br>----<br>Equipo AppSistonio \n\r";
 
 		var mailOpt = {
@@ -96,7 +97,7 @@ export class EmailBusiness {
 		var messageHtml = "Estimado usuario " + nombre;
 		messageHtml += "<br><br>Tu pedido ya esta asignado y se ejecutara el " + fechaEnvio + " ";
 		messageHtml += "<br><br>Recuerda que puedes consultar el estado de tus pedidos en la sección \"Mis pedidos\"";
-		messageHtml += "</b><br>----<br>Equipo FruBitCol \n\r";
+		messageHtml += "</b><br>----<br>Equipo AppSistonio \n\r";
 
 		var mailOpt = {
 			from: "serviciosrational@gmail.com",
@@ -126,7 +127,7 @@ export class EmailBusiness {
 		var messageHtml = "Estimado usuario " + nombre;
 		messageHtml += "<br><br>Tu pedido ya esta fue ejecutado. ";
 		messageHtml += "<br><br>Recuerda que puedes consultar el estado de tus pedidos en la sección \"Mis pedidos\"";
-		messageHtml += "</b><br>----<br>Equipo FruBitCol \n\r";
+		messageHtml += "</b><br>----<br>Equipo AppSistonio \n\r";
 
 		var mailOpt = {
 			from: "serviciosrational@gmail.com",

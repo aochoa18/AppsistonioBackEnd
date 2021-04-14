@@ -69,17 +69,21 @@ export class ServiciosBusiness {
             actServicio.idDomiciliario = await getManager().getRepository(Domiciliario).findOne({ where: { id: updServicio.IdDomiciliario } });
             var newEstadoServicio = await getManager().getRepository(EstadoServicio).findOne({ where: { nombre: updServicio.EstadoServicio } });;
             actServicio.idEstadoServicio = newEstadoServicio;
-            actServicio.fechaEntrega = updServicio.FechaEntrega;
+            actServicio.fechaEntrega = updServicio.FechaEntrega ?? actServicio.fechaEntrega;
+            actServicio.fechaEjecucion = updServicio.FechaEjecucion ?? actServicio.fechaEjecucion;
+            actServicio.fechaFinalizacion = updServicio.FechaFinalizacion ?? actServicio.fechaFinalizacion;
             getManager().getRepository(Servicio).save(actServicio);
             var emailBussines: EmailBusiness = new EmailBusiness();
             var serc = await getManager().getRepository(Servicio).findOne({
                 where: { id: updServicio.Id }, relations: ['idCliente']
             });
-            if (newEstadoServicio.nombre == "En Proceso") {
-                emailBussines.SendMailAsigando(serc.idCliente.nombre, serc.idCliente.correo, updServicio.fechaEntrega);
-            }
-            if (newEstadoServicio.nombre == "Terminado") {
-                emailBussines.SendMailTerminado(serc.idCliente.nombre, serc.idCliente.correo);
+            if (newEstadoServicio != null) {
+                if (newEstadoServicio.nombre == "En Proceso") {
+                    emailBussines.SendMailAsigando(serc.idCliente.nombre, serc.idCliente.correo, updServicio.fechaEntrega);
+                }
+                if (newEstadoServicio.nombre == "Terminado") {
+                    emailBussines.SendMailTerminado(serc.idCliente.nombre, serc.idCliente.correo);
+                }
             }
             return true;
         } else {
@@ -133,9 +137,12 @@ export class ServiciosBusiness {
         curPago = await getManager().getRepository(Pago).save(curPago);
 
         if (pago.estadoTransaccion == 'APPROVED') {
-            var srcCliente = await getManager().getRepository(Servicio).findOne({ where: { id: pago.idPedido }, relations: ["idCliente"] });
+            var srcCliente = await getManager().getRepository(Servicio).findOne({
+                where: { id: pago.idPedido },
+                relations: ["idCliente", "productosServicio", "productosServicio.idProducto"]
+            });
             var emailBussines: EmailBusiness = new EmailBusiness();
-            emailBussines.SendMailNewServicio(srcCliente.idCliente.nombre, srcCliente.idCliente.correo);
+            emailBussines.SendMailNewServicio(srcCliente.idCliente.nombre, srcCliente.idCliente.correo, srcCliente.productosServicios[0].idProducto.nombre);
         } else if (pago.estadoTransaccion == 'REJECTED') {
             var srcCliente = await getManager().getRepository(Servicio).findOne({ where: { id: pago.idPedido }, relations: ["idCliente"] });
             var emailBussines: EmailBusiness = new EmailBusiness();

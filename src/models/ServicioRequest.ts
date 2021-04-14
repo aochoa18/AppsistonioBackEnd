@@ -43,12 +43,30 @@ export class ServicioCliente {
     IdDomiciliario: number;
     @jsonMember
     fechaEntrega: string;
+    @jsonMember
+    fechaEjecucion: string;
+    @jsonMember
+    fechaFinalizacion: string;
 
     get FechaEntrega(): Date {
         if (this.fechaEntrega == null || this.fechaEntrega == "" || typeof this.fechaEntrega == 'undefined')
             return null
         else
             return new Date(this.fechaEntrega);
+    }
+
+    get FechaEjecucion(): Date {
+        if (this.fechaEjecucion == null || this.fechaEjecucion == "" || typeof this.fechaEjecucion == 'undefined')
+            return null
+        else
+            return new Date(this.fechaEjecucion);
+    }
+
+    get FechaFinalizacion(): Date {
+        if (this.fechaFinalizacion == null || this.fechaFinalizacion == "" || typeof this.fechaFinalizacion == 'undefined')
+            return null
+        else
+            return new Date(this.fechaFinalizacion);
     }
 }
 

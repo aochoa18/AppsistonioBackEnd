@@ -28,6 +28,7 @@ export class PlanesBusiness {
         newPlan.fechaRegistro = new Date();
         newPlan.nombre = plan.Nombre;
         newPlan.precio = plan.Precio;
+        newPlan.dias = plan.Dias;
         newPlan = await getManager().getRepository(Planes).save(newPlan);
         for (var i = 0; i < plan.configPlan.length; i++) {
             var element = plan.configPlan[i];
@@ -50,12 +51,14 @@ export class PlanesBusiness {
         var usuarioPlan = await getManager().getRepository(PlanesCliente).find({ where: { idPlan: plan.Id } });
         if (usuarioPlan.length > 0){
             return null;
-        }
+        }   
         newPlan.estado = plan.Estado;
         newPlan.fechaRegistro = new Date();
         newPlan.nombre = plan.Nombre;
         newPlan.precio = plan.Precio;
+        newPlan.dias = plan.Dias;
         newPlan = await getManager().getRepository(Planes).save(newPlan);
+        console.log(newPlan);
         for (var i = 0; i < plan.configPlan.length; i++) {
             var element = plan.configPlan[i];
             if (element.Accion == "Create") {
