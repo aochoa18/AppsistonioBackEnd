@@ -7,7 +7,7 @@ import { CellVozBusiness } from "./CellVozBusiness";
 export class UtilBusiness {
     async CreateOTP(phoneNumber: string, otp: string): Promise<SMSResponse> {
         var SMSB = new CellVozBusiness();
-        var message: string = "Su codigo de verificacion para FruBitCol es " + otp;
+        var message: string = "Su codigo de verificacion para AppSistonio es " + otp;
         var otpMsg = await SMSB.SendOtp("57" + phoneNumber, message);
         return otpMsg;
     }

@@ -56,8 +56,8 @@ export class ClienteBusiness {
         var data = getManager().getRepository(PlanesCliente).find({
             where: {
                 idCliente: IdCliente,
-                desde: Raw(alias => `cast(${alias} as date) < cast(getdate() as date)`),
-                hasta: Raw(alias => `cast(${alias} as date) > cast(getdate() as date)`)
+                desde: Raw(alias => `cast(${alias} as date) <= cast(getdate() as date)`),
+                hasta: Raw(alias => `cast(${alias} as date) >= cast(getdate() as date)`)
             },
             relations: ["idCliente", "idPlan", "idPlan.configuracionPlanes", "idPlan.configuracionPlanes.idProducto"]
         });

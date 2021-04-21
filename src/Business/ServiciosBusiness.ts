@@ -111,7 +111,7 @@ export class ServiciosBusiness {
         var estadoServicio = await getManager().getRepository(EstadoServicio).findOne({ where: { id: idEstado } });
         var data = await getManager().getRepository(Servicio).find({
             where: { idEstadoServicio: estadoServicio },
-            relations: ["idCliente", "idDomiciliario", "idEstadoServicio", "productosServicios", "productosServicios.idProducto"]
+            relations: ["idCliente", "idDomiciliario", "idEstadoServicio", "productosServicios", "productosServicios.idProducto", "idMunicipio","idMunicipio.idDepto"]
         });
         return data;
     }

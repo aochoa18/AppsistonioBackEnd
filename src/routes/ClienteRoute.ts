@@ -14,7 +14,7 @@ router.get('/GetServiciosCliente', cliente_controller.GetServiciosCliente);
 
 router.post('/crearDireccionCliente', cliente_controller.crearDireccionCliente);
 
-router.delete('/eliminarDireccionCliente', cliente_controller.eliminarDireccionCliente);
+router.post('/eliminarDireccionCliente', cliente_controller.eliminarDireccionCliente);
 
 router.get('/GetAllClientes', cliente_controller.GetAllClientes);
 

@@ -15,7 +15,7 @@ exports.CrearCliente = async (req, res) => {
         if (usrReq != null) {
             var newUser = await ClienteB.CreatePerfilCliente(usrReq.Cliente);
             if (newUser != null) {
-                response.Message = "¡Bienvenio a SusEnvíos!";
+                response.Message = "¡Bienvenido a AppSistonio!";
                 response.Type = TypeResponse.Ok;
                 response.Value = JSON.stringify(newUser);
             }
